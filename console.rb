@@ -78,10 +78,15 @@ ticket_5.save()
 ticket_5.customer_id = customer_3.id
 ticket_5.update()
 
+films_customers = film_1.customers()
+customers_films = customer_1.films()
+
+customer_1.buy_ticket(film_1)
 
 customers = Customer.all()
 films = Film.all()
 tickets = Ticket.all()
+
 
 binding.pry
 nil

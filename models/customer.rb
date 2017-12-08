@@ -15,7 +15,8 @@ attr_accessor :name, :funds
           VALUES ($1, $2)
           RETURNING id"
     values = [@name, @funds]
-    customer = SqlRunner.run(sql, values).first
+    customer = SqlRunner.run(sql, values)
+    customer = customer.first
     @id = customer["id"].to_i
   end
 
@@ -25,6 +26,20 @@ attr_accessor :name, :funds
           WHERE id = $3"
     values = [@name, @funds, @id]
     SqlRunner.run(sql, values)
+  end
+
+  def films()
+    sql = "SELECT films.* FROM films
+          INNER JOIN tickets
+          ON tickets.film_id = films.id
+          WHERE tickets.customer_id = $1"
+    values = [@id]
+    films_hashes = SqlRunner.run(sql, values)
+    return films_hashes.map{|films_hash| Film.new(films_hash)}
+  end
+
+  def buy_ticket(film)
+    @funds -= film.price
   end
 
   def Customer.all()
@@ -38,6 +53,8 @@ attr_accessor :name, :funds
     sql = "DELETE FROM customers"
     SqlRunner.run(sql)
   end
+
+
 
 
 
