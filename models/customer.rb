@@ -9,5 +9,8 @@ attr_accessor :name, :funds
     @funds = options["funds"]
   end
 
+  def save()
+  end
+
 
 end
