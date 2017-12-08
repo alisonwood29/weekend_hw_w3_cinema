@@ -20,6 +20,9 @@ customer_1.save()
 customer_2.save()
 customer_3.save()
 
+customer_1.name = "Alison Wood"
+customer_1.update()
+
 customers = Customer.all()
 
 binding.pry
