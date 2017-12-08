@@ -19,6 +19,18 @@ attr_accessor :name, :funds
     @id = customer["id"].to_i
   end
 
+  def Customer.all()
+    sql = "SELECT * FROM customers"
+    customer_hashes = SqlRunner.run(sql)
+    customer = customer_hashes.map{|customer_hash| Customer.new(customer_hash)}
+    return customer
+  end
+
+  def Customer.delete_all()
+    sql = "DELETE FROM customers"
+    SqlRunner.run(sql)
+  end
+
 
 
 end
