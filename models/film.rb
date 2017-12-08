@@ -18,10 +18,23 @@ class Film
     @id = result.first["id"].to_i
   end
 
+  def update()
+    sql = "UPDATE films
+          SET (title, price) = ($1, $2)
+          WHERE id = $3"
+    values = [@title, @price, @id]
+    SqlRunner.run(sql, values)
+  end
+
   def Film.all()
     sql = "SELECT * FROM films"
     films_hashes = SqlRunner.run(sql)
     return films_hashes.map {|film_hash| Film.new(film_hash)}
+  end
+
+  def Film.delete_all()
+    sql = "DELETE FROM films"
+    SqlRunner.run(sql)
   end
 
 

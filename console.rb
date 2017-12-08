@@ -3,6 +3,7 @@ require_relative("./models/customer")
 require_relative("./models/film")
 
 Customer.delete_all()
+Film.delete_all()
 
 customer_1 = Customer.new({
   "name" => "Alison",
@@ -40,6 +41,9 @@ film_3 = Film.new({
   film_1.save()
   film_2.save()
   film_3.save()
+
+  film_1.price = "10"
+  film_1.update()
 
 
 customers = Customer.all()
