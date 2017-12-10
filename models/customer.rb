@@ -7,7 +7,7 @@ attr_accessor :name, :funds
   def initialize(options)
     @id = options["id"].to_i if options["id"]
     @name = options["name"]
-    @funds = options["funds"]
+    @funds = options["funds"].to_i
   end
 
   def save()
@@ -38,8 +38,16 @@ attr_accessor :name, :funds
     return films_hashes.map{|films_hash| Film.new(films_hash)}
   end
 
+  def number_films_seen()
+    return films.count
+  end
+
   def buy_ticket(film)
+    ticket = Ticket.new({"customer_id" => @id, "film_id" => film.id})
     @funds -= film.price
+    ticket.save()
+    update()
+    return ticket
   end
 
   def Customer.all()

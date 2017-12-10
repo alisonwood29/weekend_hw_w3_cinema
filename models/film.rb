@@ -36,6 +36,10 @@ class Film
     return customer_hashes.map {|customer_hash| Customer.new(customer_hash)}
   end
 
+  def customer_number()
+    return customers.count
+  end
+
   def Film.all()
     sql = "SELECT * FROM films"
     films_hashes = SqlRunner.run(sql)

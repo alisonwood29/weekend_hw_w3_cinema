@@ -29,22 +29,22 @@ customer_1.update()
 
 film_1 = Film.new({
   "title" => "Love Actually",
-  "price" => "8"
+  "price" => 8
   })
 film_2 = Film.new({
   "title" => "Polar Express",
-  "price" => "5"
+  "price" => 5
   })
 film_3 = Film.new({
   "title" => "It's a Wonderful Life",
-  "price" => "6"
+  "price" => 6
   })
 
 film_1.save()
 film_2.save()
 film_3.save()
 
-film_1.price = "10"
+film_1.price = 10
 film_1.update()
 
 
@@ -75,13 +75,20 @@ ticket_3.save()
 ticket_4.save()
 ticket_5.save()
 
+ticket_6 = customer_2.buy_ticket(film_1)
+
 ticket_5.customer_id = customer_3.id
 ticket_5.update()
 
-films_customers = film_1.customers()
+films_customers = film_2.customers()
 customers_films = customer_1.films()
 
-customer_1.buy_ticket(film_1)
+film_customer_num = film_2.customer_number()
+
+customer_film_num = customer_2.number_films_seen()
+
+
+
 
 customers = Customer.all()
 films = Film.all()

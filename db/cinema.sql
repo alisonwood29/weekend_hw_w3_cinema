@@ -20,3 +20,9 @@ CREATE TABLE tickets(
   customer_id INT4 REFERENCES customers(id),
   film_id INT4 REFERENCES films(id)
 );
+
+CREATE TABLE screenings(
+  id SERIAL4 PRIMARY KEY,
+  film_id INT4 REFERENCES films(id),
+  film_time VARCHAR(255)
+);
